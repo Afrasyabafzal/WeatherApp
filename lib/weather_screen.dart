@@ -27,8 +27,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   Future<Map<String, dynamic>> getWeather() async {
     try {
-      String city = "London";
-      String country = "uk";
+      String city = "Lahore";
+      String country = "PK";
       String apiKey = "6728f716c183566f4d7e863c74dc016f";
       final response = await http.get(Uri.parse(
           'https://api.openweathermap.org/data/2.5/forecast?q=$city,$country&APPID=$apiKey'));
@@ -63,7 +63,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
       body: FutureBuilder(
         future: getWeather(),
         builder: (context, snapshot) {
-          print(snapshot);
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator.adaptive(),
@@ -102,6 +101,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
                             children: [
+                              const Text(
+                                "Lahore, Pakistan",
+                                style: TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(height: 10),
                               Text(
                                 '$temperature K',
                                 style: const TextStyle(
